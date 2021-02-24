@@ -1,6 +1,6 @@
 module "ssh_key_pair" {
-  source = "cloudposse/ssh-key-pair/tls"
-  version = "0.6.0"
+  source                = "cloudposse/ssh-key-pair/tls"
+  version               = "0.6.0"
   stage                 = "devops"
   name                  = "cks-lab"
   ssh_public_key_path   = "secrets"

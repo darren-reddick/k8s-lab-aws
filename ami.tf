@@ -1,8 +1,8 @@
 
 
 data "aws_ami" "ubuntu_server" {
-  most_recent      = true
-  owners           = ["aws-marketplace"]
+  most_recent = true
+  owners      = ["aws-marketplace"]
 
   filter {
     name   = "name"
