@@ -74,6 +74,7 @@ KUBECONFIG=/etc/kubernetes/admin.conf sudo -E kubectl get no
 ### Kubernetes Versions
 
 So far this has been tested on:
+* 1.18.16
 * 1.19.8
 * 1.20.0
 
