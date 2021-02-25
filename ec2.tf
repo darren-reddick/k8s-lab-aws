@@ -94,8 +94,8 @@ resource "aws_s3_bucket" "join-cluster" {
     Name        = "cks-lab-join-cluster"
     Environment = var.environment
   }
-    // clean up our bucket before we delete it
-    provisioner "local-exec" {
+  // clean up our bucket before we delete it
+  provisioner "local-exec" {
     when    = destroy
     command = <<-EOD
 aws s3 rm s3://${self.id}/join-config.yaml
