@@ -35,3 +35,7 @@ terraform.rc
 
 # No secrets please
 secrets/
+
+# Nor these
+k8s-lab-aws.tfplan
+.dockerimage
