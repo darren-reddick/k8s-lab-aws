@@ -55,7 +55,7 @@ EOF
 
 # install k8s binaries
 apt-get update
-apt-get install -y kubelet kubeadm kubectl kubernetes-cni
+apt-get install -y kubelet=${var.k8s_version} kubeadm=${var.k8s_version} kubectl=${var.k8s_version} kubernetes-cni
 apt-mark hold kubelet kubeadm kubectl
 FOE
     kubeadm_master = <<FOE
