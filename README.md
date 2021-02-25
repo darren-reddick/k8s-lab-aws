@@ -52,7 +52,7 @@ Connection to the nodes is possible at this time but there is a bunch of stuff g
 
 Once this process is complete you should be able to check the status of the nodes in the cluster:
 ```
-KUBECONFIG=/etc/kubernetes/admin.conf sudo ????
+KUBECONFIG=/etc/kubernetes/admin.conf sudo -E kubectl get no
 ```
 
 ### How it works
@@ -62,6 +62,7 @@ KUBECONFIG=/etc/kubernetes/admin.conf sudo ????
     * Configures the OS
     * Installs packages
     * initializes as a Kubernetes master using kubeadm
+    * [Calico](https://www.projectcalico.org/) is installed for container networking 
     * Creates a cluster join config in an S3 bucket using kubeadm
 * The **userdata** on the node(s):
     * Configures the OS
@@ -69,6 +70,14 @@ KUBECONFIG=/etc/kubernetes/admin.conf sudo ????
     * Pulls the cluster join config from the S3 bucket
     * Joins the cluster using the config and kubeadm
 * An ssh key pair is created in the local **secrets/** directory which is used for sshing to the nodes
+
+### Kubernetes Versions
+
+So far this has been tested on:
+* 1.19.8
+* 1.20.0
+
+The terraform variable k8s_version is restricted to those that have been tested. This can be overridden just by updating the validation array.
 
 ## The Future
 
