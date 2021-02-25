@@ -27,12 +27,21 @@ Make sure you have installed all of the following prerequisites on your machine:
 * An AWS account
 * AWSCLI - [Download & Install](https://aws.amazon.com/cli/) the aws cli.
 
+...or use the dockerized workflow which requires:
+
+* Docker - [Download & Install](https://docs.docker.com/get-docker/) docker
+
 ### Quick start
 
 Clone the gitHub repository
 
 ```
 git clone https://github.com/darren-reddick/k8s-lab-aws.git
+```
+
+Set the AWS_PROFILE variable to the relevant profile
+```
+export AWS_PROFILE=[myprofile]
 ```
 
 Initialize Terraform
@@ -55,6 +64,19 @@ Once this process is complete you should be able to check the status of the node
 KUBECONFIG=/etc/kubernetes/admin.conf sudo -E kubectl get no
 ```
 
+### Dockerized workflow
+
+The terraform init and apply steps above can be run in a docker container so the tools dont have to installed locally.
+
+Substitute those steps with the following:
+
+```
+make tf-init
+make tf-plan
+make tf-apply
+```
+
+
 ### How it works
 
 * The terraform code creates Ubuntu LTS 16 EC2 instances
@@ -74,6 +96,7 @@ KUBECONFIG=/etc/kubernetes/admin.conf sudo -E kubectl get no
 ### Kubernetes Versions
 
 So far this has been tested on:
+* 1.18.16
 * 1.19.8
 * 1.20.0
 

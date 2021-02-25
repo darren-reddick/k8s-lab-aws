@@ -85,6 +85,7 @@ output "connect-to-master" {
   value = join("", ["ssh -i secrets/", var.environment, "-", aws_key_pair.cks-lab.key_name, ".pem ubuntu@", aws_instance.master.public_dns])
 }
 
+// S3 bucket for exchange of the cluster join config between master and worker
 resource "aws_s3_bucket" "join-cluster" {
   acl = "private"
 
@@ -93,7 +94,16 @@ resource "aws_s3_bucket" "join-cluster" {
     Name        = "cks-lab-join-cluster"
     Environment = var.environment
   }
+    // clean up our bucket before we delete it
+    provisioner "local-exec" {
+    when    = destroy
+    command = <<-EOD
+aws s3 rm s3://${self.id}/join-config.yaml
+EOD
+  }
 }
+
+
 
 
 data "aws_caller_identity" "current" {}
