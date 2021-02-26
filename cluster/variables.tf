@@ -1,9 +1,5 @@
-variable "region" {
-  default = "eu-west-1"
-}
-
 variable "environment" {
-  default = "devops"
+
 }
 
 variable "k8s_version" {
