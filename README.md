@@ -104,17 +104,14 @@ The terraform variable k8s_version is restricted to those that have been tested.
 
 ## The Future
 
-Currently this is a pretty raw incarnation that works with Ubuntu LTS 16, K8s 1.20.0 single master on a t2.mdedium instance
+Currently this is a pretty raw incarnation that works with Ubuntu LTS 16, the K8S versions previously listed (single master) on a t2.medium instance
 
 In the future we could:
 
-* Test it on other versions of K8S: There seem to be constantly changing flags for kubeadm so this may need some work
 * Support spot instances: (for cheapskates :0) I have done this on other projects with a bit of hacking around.
 * Specify instance type
 * HA Control plane: I have also done this before but it wasnt pretty
-* Restructure the Terraform into modules. Its pretty flat and ugly at the moment
 * Some CI for at least terraform fmt
-* docker based local workflow
 
 
 
