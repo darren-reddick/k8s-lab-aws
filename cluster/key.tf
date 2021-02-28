@@ -14,3 +14,7 @@ resource "aws_key_pair" "cks-lab" {
   key_name   = "cks-lab"
   public_key = module.ssh_key_pair.public_key
 }
+
+output "key_name" {
+  value = aws_key_pair.cks-lab.key_name
+}

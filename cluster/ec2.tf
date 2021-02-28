@@ -68,8 +68,14 @@ resource "aws_security_group" "k8s-node" {
     cidr_blocks = [join("/", [module.myip.address, "32"])]
   }
   ingress {
-    from_port = 6443
-    to_port   = 6443
+    from_port = 0
+    to_port   = 0
+    protocol  = -1
+    self      = true
+  }
+  ingress {
+    from_port = 10250
+    to_port   = 10250
     protocol  = "tcp"
     self      = true
   }
@@ -81,8 +87,8 @@ resource "aws_security_group" "k8s-node" {
   }
 }
 
-output "connect-to-master" {
-  value = join("", ["ssh -i secrets/", var.environment, "-", aws_key_pair.cks-lab.key_name, ".pem ubuntu@", aws_instance.master.public_dns])
+output "master_public_dns" {
+  value = aws_instance.master.public_dns
 }
 
 // S3 bucket for exchange of the cluster join config between master and worker
@@ -239,8 +245,8 @@ FOE
 }
 
 
-output "connect-to-node1" {
-  value = join("", ["ssh -i secrets/", var.environment, "-", aws_key_pair.cks-lab.key_name, ".pem ubuntu@", aws_instance.node.public_dns])
+output "node_public_dns" {
+  value = aws_instance.node.public_dns
 }
 
 
