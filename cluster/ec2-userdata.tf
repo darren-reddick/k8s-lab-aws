@@ -93,8 +93,7 @@ EOF
 
 
 # install calico networking overlay
-kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
-kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yaml
+kubectl create -f https://docs.projectcalico.org/manifests/calico.yaml
 
 # install aws storage class
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/storage-class/aws/default.yaml
